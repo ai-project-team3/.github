@@ -67,7 +67,7 @@ jobs:
             const content = `${title}\n${details}\n작업자: ${actor}`.slice(0, 1900);
             try {
               const target = new URL(process.env.DISCORD_WEBHOOK_URL);
-              if (target.protocol !== 'https:' || target.hostname !== 'discord.com' ||
+              if (target.protocol !== 'https:' || !['discord.com', 'discordapp.com'].includes(target.hostname) ||
                   !/^\/api\/webhooks\/\d+\/[^/]+$/.test(target.pathname)) {
                 core.setFailed('Invalid Discord webhook configuration.');
                 return;
